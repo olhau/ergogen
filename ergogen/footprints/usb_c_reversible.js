@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // HRO TYPE-C-31-M-12  —  USB-C Receptacle (USB 2.0, GND / D+ / D- only)
-// Ergogen v4 footprint — KiCad 8/9/10 compatible
+// Ergogen v4 footprint — KiCad 8+ compatible
 //
 // Retained signals   : GND (A1/B12/A12/B1), D− (A6/B6), D+ (A7/B7), SH (shell)
 // Removed signals    : VBUS, CC1, CC2, SBU1, SBU2
@@ -181,7 +181,6 @@ module.exports = {
     (layer "${fp_layer}")
     ${p.at}
     (attr smd)
-    (duplicate_pad_numbers_are_jumpers no)
     (descr "HRO TYPE-C-31-M-12 USB-C receptacle, USB 2.0 GND/D+/D- only, reversible PCB")
     (tags "usb usb-c 2.0 reversible split keyboard")
 
