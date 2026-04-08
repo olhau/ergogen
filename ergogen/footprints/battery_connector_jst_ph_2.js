@@ -172,7 +172,7 @@ module.exports = {
                     (fill yes)
                 )
             )
-            ${local_nets[0]}
+            ${local_nets[0].str}
         )
         (pad "31" smd custom (at -1 1.8 ${180 + p.r}) (size 0.1 0.1) (layers "B.Cu" "B.Mask" "B.Paste")
             (clearance 0.1) (zone_connect 0)
@@ -190,7 +190,7 @@ module.exports = {
                     (fill yes)
                 )
             )
-            ${local_nets[0]}
+            ${local_nets[0].str}
         )
         (pad "22" smd custom (at 1 1.8 ${180 + p.r}) (size 0.1 0.1) (layers "F.Cu" "F.Mask" "F.Paste")
             (clearance 0.1) (zone_connect 0)
@@ -208,7 +208,7 @@ module.exports = {
                     (fill yes)
                 )
             )
-            ${local_nets[1]}
+            ${local_nets[1].str}
         )
         (pad "32" smd custom (at 1 1.8 ${180 + p.r}) (size 0.1 0.1) (layers "B.Cu" "B.Mask" "B.Paste")
             (clearance 0.1) (zone_connect 0)
@@ -226,7 +226,7 @@ module.exports = {
                     (fill yes)
                 )
             )
-            ${local_nets[1]}
+            ${local_nets[1].str}
         )
         (pad "1" smd custom (at -1 2.816 ${180 + p.r}) (size 1.2 0.5) (layers "F.Cu" "F.Mask" "F.Paste") ${p.BAT_P.str}
             (clearance 0.1) (zone_connect 0)
