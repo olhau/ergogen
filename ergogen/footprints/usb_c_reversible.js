@@ -111,24 +111,23 @@ module.exports = {
 
     // ── Shield / shell THT pads ───────────────────────────────────────────────
     // Wired to GND. Through-hole — inherently both-sided, no mirroring needed.
-    // remove_unused_layers no → keep copper on all layers (GND plane stitching).
     // No rotation in (at …) — see note above.
     const sh_pads = `
     (pad "SH" thru_hole oval
       (at -4.32 -3.13) (size 1 2.1) (drill oval 0.6 1.7)
-      (layers "*.Cu" "*.Mask") (remove_unused_layers no)
+      (layers "*.Cu" "*.Mask")
       ${p.gnd.str})
     (pad "SH" thru_hole oval
       (at  4.32 -3.13) (size 1 2.1) (drill oval 0.6 1.7)
-      (layers "*.Cu" "*.Mask") (remove_unused_layers no)
+      (layers "*.Cu" "*.Mask")
       ${p.gnd.str})
     (pad "SH" thru_hole oval
       (at -4.32  1.05) (size 1 1.6) (drill oval 0.6 1.2)
-      (layers "*.Cu" "*.Mask") (remove_unused_layers no)
+      (layers "*.Cu" "*.Mask")
       ${p.gnd.str})
     (pad "SH" thru_hole oval
       (at  4.32  1.05) (size 1 1.6) (drill oval 0.6 1.2)
-      (layers "*.Cu" "*.Mask") (remove_unused_layers no)
+      (layers "*.Cu" "*.Mask")
       ${p.gnd.str})`
 
     // ── NPTH locating holes ───────────────────────────────────────────────────
