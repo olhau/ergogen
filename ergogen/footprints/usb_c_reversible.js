@@ -18,9 +18,10 @@
 //   D_plus      net       MCU pin net for D+
 //
 // IMPORTANT NOTES ON ROTATION
-//   • p.at already encodes (at x y rotation).  Do NOT add p.rot to individual
-//     pad (at …) statements — KiCad rotates child elements automatically via
-//     the parent footprint's at, and adding p.rot again would double-rotate.
+//   • In ergogen's output context, p.at does NOT cause KiCad to automatically
+//     rotate child elements. Each pad must declare its own rotation via p.rot
+//     so that non-square pad shapes (ovals, roundrects) orient correctly.
+//     This is the standard ergogen convention — it is not double-rotation.
 //   • The keepout zone idea from some versions is intentionally omitted: zones
 //     embedded in footprints do not transform with footprint placement/rotation
 //     in KiCad, so they would always sit at absolute board position (0,0).
@@ -66,7 +67,8 @@ module.exports = {
     const paste_mask = `(solder_paste_margin -0.05) (solder_mask_margin 0.03)`
 
     // ── SMD pad builder ───────────────────────────────────────────────────────
-    // NOTE: no rotation in (at x y) — the footprint's p.at handles that.
+    // p.rot is included in each pad's (at …) so non-square shapes orient
+    // correctly when the footprint is rotated. This is the ergogen convention.
     const net_str = name =>
       name === 'GND'     ? p.gnd.str
       : name === 'D_minus' ? p.D_minus.str
@@ -74,7 +76,7 @@ module.exports = {
 
     const smd = (name, cu, x, y, w, h) =>
       `(pad "${name}" smd roundrect
-        (at ${x} ${y})
+        (at ${x} ${y} ${p.rot})
         (size ${w} ${h})
         (layers "${cu}.Cu" "${cu}.Mask" "${cu}.Paste")
         (roundrect_rratio 0.25)
@@ -111,32 +113,32 @@ module.exports = {
 
     // ── Shield / shell THT pads ───────────────────────────────────────────────
     // Wired to GND. Through-hole — inherently both-sided, no mirroring needed.
-    // No rotation in (at …) — see note above.
+    // p.rot included so oval shape orients with the footprint rotation.
     const sh_pads = `
     (pad "SH" thru_hole oval
-      (at -4.32 -3.13) (size 1 2.1) (drill oval 0.6 1.7)
+      (at -4.32 -3.13 ${p.rot}) (size 1 2.1) (drill oval 0.6 1.7)
       (layers "*.Cu" "*.Mask")
       ${p.gnd.str})
     (pad "SH" thru_hole oval
-      (at  4.32 -3.13) (size 1 2.1) (drill oval 0.6 1.7)
+      (at  4.32 -3.13 ${p.rot}) (size 1 2.1) (drill oval 0.6 1.7)
       (layers "*.Cu" "*.Mask")
       ${p.gnd.str})
     (pad "SH" thru_hole oval
-      (at -4.32  1.05) (size 1 1.6) (drill oval 0.6 1.2)
+      (at -4.32  1.05 ${p.rot}) (size 1 1.6) (drill oval 0.6 1.2)
       (layers "*.Cu" "*.Mask")
       ${p.gnd.str})
     (pad "SH" thru_hole oval
-      (at  4.32  1.05) (size 1 1.6) (drill oval 0.6 1.2)
+      (at  4.32  1.05 ${p.rot}) (size 1 1.6) (drill oval 0.6 1.2)
       (layers "*.Cu" "*.Mask")
       ${p.gnd.str})`
 
     // ── NPTH locating holes ───────────────────────────────────────────────────
     const npth = `
     (pad "" np_thru_hole circle
-      (at -2.89 -2.6) (size 0.65 0.65) (drill 0.65)
+      (at -2.89 -2.6 ${p.rot}) (size 0.65 0.65) (drill 0.65)
       (layers "*.Cu" "*.Mask"))
     (pad "" np_thru_hole circle
-      (at  2.89 -2.6) (size 0.65 0.65) (drill 0.65)
+      (at  2.89 -2.6 ${p.rot}) (size 0.65 0.65) (drill 0.65)
       (layers "*.Cu" "*.Mask"))`
 
     // ── Silkscreen ────────────────────────────────────────────────────────────
