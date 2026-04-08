@@ -67,7 +67,12 @@ module.exports = {
 
     const keepout = `
       (zone (net 0) (layers F.Cu B.Cu)
-        (keepout (tracks yes) (vias yes) (pads no) (copperpour yes))
+      (keepout
+        (tracks not_allowed)
+        (vias not_allowed)
+        (pads allowed)
+        (copperpour not_allowed)
+      )
         (polygon (pts (xy -5 -1) (xy 5 -1) (xy 5 -6) (xy -5 -6)))
       )
     `
