@@ -25,7 +25,7 @@ module.exports = {
 
     const pad = (name, layer, x, y, w, h, net) =>
       `(pad "${name}" smd roundrect
-        (at ${x} ${y})
+        (at ${x} ${y} ${p.rot})
         (size ${w} ${h})
         (layers "${layer}.Cu" "${layer}.Mask" "${layer}.Paste")
         (roundrect_rratio 0.25)
@@ -54,25 +54,25 @@ module.exports = {
     ` : ''
 
     const sh = `
-      (pad "SH" thru_hole oval (at -4.32 -3.13) (size 1 2.1) (drill oval 0.6 1.7) (layers *.Cu *.Mask) ${p.gnd.str})
-      (pad "SH" thru_hole oval (at  4.32 -3.13) (size 1 2.1) (drill oval 0.6 1.7) (layers *.Cu *.Mask) ${p.gnd.str})
-      (pad "SH" thru_hole oval (at -4.32  1.05) (size 1 1.6) (drill oval 0.6 1.2) (layers *.Cu *.Mask) ${p.gnd.str})
-      (pad "SH" thru_hole oval (at  4.32  1.05) (size 1 1.6) (drill oval 0.6 1.2) (layers *.Cu *.Mask) ${p.gnd.str})
+      (pad "SH" thru_hole oval (at -4.32 -3.13 ${p.rot}) (size 1 2.1) (drill oval 0.6 1.7) (layers *.Cu *.Mask) ${p.gnd.str})
+      (pad "SH" thru_hole oval (at  4.32 -3.13 ${p.rot}) (size 1 2.1) (drill oval 0.6 1.7) (layers *.Cu *.Mask) ${p.gnd.str})
+      (pad "SH" thru_hole oval (at -4.32  1.05 ${p.rot}) (size 1 1.6) (drill oval 0.6 1.2) (layers *.Cu *.Mask) ${p.gnd.str})
+      (pad "SH" thru_hole oval (at  4.32  1.05 ${p.rot}) (size 1 1.6) (drill oval 0.6 1.2) (layers *.Cu *.Mask) ${p.gnd.str})
     `
 
     const npth = `
-      (pad "" np_thru_hole circle (at -2.89 -2.6) (size 0.65 0.65) (drill 0.65) (layers *.Cu *.Mask))
-      (pad "" np_thru_hole circle (at  2.89 -2.6) (size 0.65 0.65) (drill 0.65) (layers *.Cu *.Mask))
+      (pad "" np_thru_hole circle (at -2.89 -2.6 ${p.rot}) (size 0.65 0.65) (drill 0.65) (layers *.Cu *.Mask))
+      (pad "" np_thru_hole circle (at  2.89 -2.6 ${p.rot}) (size 0.65 0.65) (drill 0.65) (layers *.Cu *.Mask))
     `
 
     const keepout = `
       (zone (net 0) (layers F.Cu B.Cu)
-      (keepout
-        (tracks not_allowed)
-        (vias not_allowed)
-        (pads allowed)
-        (copperpour not_allowed)
-      )
+        (keepout
+          (tracks not_allowed)
+          (vias not_allowed)
+          (pads allowed)
+          (copperpour not_allowed)
+        )
         (polygon (pts (xy -5 -1) (xy 5 -1) (xy 5 -6) (xy -5 -6)))
       )
     `
