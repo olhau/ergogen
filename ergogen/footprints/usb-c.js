@@ -31,6 +31,7 @@ module.exports = {
     return `
     (footprint "USB-C-SHOU_TYPE-C-16P-REVERSIBLE"
       (layer "F.Cu")
+      ${p.at}
       (descr "Mid-mount USB-C, SHOU TYPE-C-16P-CB1.6, LCSC C2906290. GND+D+/D- only, reversible F.Cu+B.Cu, extended pads for drag soldering.")
       (tags "USB-C mid-mount reversible")
 
