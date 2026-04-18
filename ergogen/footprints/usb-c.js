@@ -23,9 +23,10 @@ module.exports = {
   },
 
   body: p => {
-    const gnd = p.net.GND
-    const dp  = p.net.DPLUS
-    const dm  = p.net.DMINUS
+    // p.NET.str is the complete KiCad (net INDEX "NAME") string ergogen provides
+    const gnd = p.GND.str
+    const dp  = p.DPLUS.str
+    const dm  = p.DMINUS.str
 
     return `
     (footprint "USB-C-SHOU_TYPE-C-16P-REVERSIBLE"
@@ -77,47 +78,47 @@ module.exports = {
 
       ${''/* ── F.Cu SMD pads ─────────────────────────────────────── */}
       ${''/* A1  — GND (outer left)  */}
-      (pad "A1"  smd rect (at -3.35 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (net ${gnd.index} "${gnd.name}"))
+      (pad "A1"  smd rect (at -3.35 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") ${gnd})
       ${''/* B12 — GND (inner left)  */}
-      (pad "B12" smd rect (at -3.05 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (net ${gnd.index} "${gnd.name}"))
+      (pad "B12" smd rect (at -3.05 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") ${gnd})
       ${''/* B1  — GND (inner right) */}
-      (pad "B1"  smd rect (at  3.05 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (net ${gnd.index} "${gnd.name}"))
+      (pad "B1"  smd rect (at  3.05 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") ${gnd})
       ${''/* A12 — GND (outer right) */}
-      (pad "A12" smd rect (at  3.35 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (net ${gnd.index} "${gnd.name}"))
+      (pad "A12" smd rect (at  3.35 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") ${gnd})
       ${''/* B7  — D+ (plug flipped) */}
-      (pad "B7"  smd rect (at -0.75 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (net ${dp.index}  "${dp.name}"))
+      (pad "B7"  smd rect (at -0.75 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") ${dp})
       ${''/* A6  — D+ (plug normal)  */}
-      (pad "A6"  smd rect (at -0.25 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (net ${dp.index}  "${dp.name}"))
+      (pad "A6"  smd rect (at -0.25 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") ${dp})
       ${''/* A7  — D- (plug normal)  */}
-      (pad "A7"  smd rect (at  0.25 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (net ${dm.index}  "${dm.name}"))
+      (pad "A7"  smd rect (at  0.25 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") ${dm})
       ${''/* B6  — D- (plug flipped) */}
-      (pad "B6"  smd rect (at  0.75 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (net ${dm.index}  "${dm.name}"))
+      (pad "B6"  smd rect (at  0.75 -2.225 ${p.r}) (size 0.3 1.8) (layers "F.Cu" "F.Paste" "F.Mask") ${dm})
 
       ${''/* ── B.Cu SMD pads (mirrored) ──────────────────────────── */}
       ${''/* B1  — GND */}
-      (pad "B1"  smd rect (at -3.05 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") (net ${gnd.index} "${gnd.name}"))
+      (pad "B1"  smd rect (at -3.05 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") ${gnd})
       ${''/* A12 — GND */}
-      (pad "A12" smd rect (at -3.35 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") (net ${gnd.index} "${gnd.name}"))
+      (pad "A12" smd rect (at -3.35 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") ${gnd})
       ${''/* A1  — GND */}
-      (pad "A1"  smd rect (at  3.35 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") (net ${gnd.index} "${gnd.name}"))
+      (pad "A1"  smd rect (at  3.35 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") ${gnd})
       ${''/* B12 — GND */}
-      (pad "B12" smd rect (at  3.05 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") (net ${gnd.index} "${gnd.name}"))
+      (pad "B12" smd rect (at  3.05 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") ${gnd})
       ${''/* A6  — D+ */}
-      (pad "A6"  smd rect (at  0.25 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") (net ${dp.index}  "${dp.name}"))
+      (pad "A6"  smd rect (at  0.25 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") ${dp})
       ${''/* B7  — D+ */}
-      (pad "B7"  smd rect (at  0.75 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") (net ${dp.index}  "${dp.name}"))
+      (pad "B7"  smd rect (at  0.75 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") ${dp})
       ${''/* A7  — D- */}
-      (pad "A7"  smd rect (at -0.25 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") (net ${dm.index}  "${dm.name}"))
+      (pad "A7"  smd rect (at -0.25 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") ${dm})
       ${''/* B6  — D- */}
-      (pad "B6"  smd rect (at -0.75 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") (net ${dm.index}  "${dm.name}"))
+      (pad "B6"  smd rect (at -0.75 -2.225 ${p.r}) (size 0.3 1.8) (layers "B.Cu" "B.Paste" "B.Mask") ${dm})
 
       ${''/* ── Shield / mounting holes (GND) ────────────────────── */}
       ${''/* Oval thru-hole pads: both size and drill are oval,      */}
       ${''/* so ${p.r} is needed on both the pad at and the drill.   */}
-      (pad "S1" thru_hole oval (at  5.62  2.58 ${p.r}) (size 1.0 2.1) (drill oval 0.6 1.5) (layers "*.Cu" "*.Mask") (net ${gnd.index} "${gnd.name}"))
-      (pad "S1" thru_hole oval (at  5.62 -1.42 ${p.r}) (size 1.0 1.7) (drill oval 0.6 1.1) (layers "*.Cu" "*.Mask") (net ${gnd.index} "${gnd.name}"))
-      (pad "S1" thru_hole oval (at -5.62  2.58 ${p.r}) (size 1.0 2.1) (drill oval 0.6 1.5) (layers "*.Cu" "*.Mask") (net ${gnd.index} "${gnd.name}"))
-      (pad "S1" thru_hole oval (at -5.62 -1.42 ${p.r}) (size 1.0 1.7) (drill oval 0.6 1.1) (layers "*.Cu" "*.Mask") (net ${gnd.index} "${gnd.name}"))
+      (pad "S1" thru_hole oval (at  5.62  2.58 ${p.r}) (size 1.0 2.1) (drill oval 0.6 1.5) (layers "*.Cu" "*.Mask") ${gnd})
+      (pad "S1" thru_hole oval (at  5.62 -1.42 ${p.r}) (size 1.0 1.7) (drill oval 0.6 1.1) (layers "*.Cu" "*.Mask") ${gnd})
+      (pad "S1" thru_hole oval (at -5.62  2.58 ${p.r}) (size 1.0 2.1) (drill oval 0.6 1.5) (layers "*.Cu" "*.Mask") ${gnd})
+      (pad "S1" thru_hole oval (at -5.62 -1.42 ${p.r}) (size 1.0 1.7) (drill oval 0.6 1.1) (layers "*.Cu" "*.Mask") ${gnd})
     )
     `
   }
