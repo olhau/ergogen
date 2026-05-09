@@ -143,12 +143,12 @@ module.exports = {
       (pad "B12" smd rect (at  2.99 -2.825 ${p.r}) (size 0.3 3.0) (layers "B.Cu" "B.Paste" "B.Mask") ${gnd})
       ${''/* A6  — D+ (USB-C spec: A6 = D1+) */}
       (pad "A6"  smd rect (at  0.25 -2.825 ${p.r}) (size 0.3 3.0) (layers "B.Cu" "B.Paste" "B.Mask") ${dp})
-      ${''/* B6  — D+ (USB-C spec: B6 = D2+) */}
-      (pad "B6"  smd rect (at  0.75 -2.825 ${p.r}) (size 0.3 3.0) (layers "B.Cu" "B.Paste" "B.Mask") ${dp})
+      ${''/* B6  — D- (complement of F.Cu B6(D+) at same X) */}
+      (pad "B6"  smd rect (at  0.75 -2.825 ${p.r}) (size 0.3 3.0) (layers "B.Cu" "B.Paste" "B.Mask") ${dm})
       ${''/* A7  — D- (USB-C spec: A7 = D1−) */}
       (pad "A7"  smd rect (at -0.25 -2.825 ${p.r}) (size 0.3 3.0) (layers "B.Cu" "B.Paste" "B.Mask") ${dm})
-      ${''/* B7  — D- (USB-C spec: B7 = D2−) */}
-      (pad "B7"  smd rect (at -0.75 -2.825 ${p.r}) (size 0.3 3.0) (layers "B.Cu" "B.Paste" "B.Mask") ${dm})
+      ${''/* B7  — D+ (complement of F.Cu B7(D-) at same X) */}
+      (pad "B7"  smd rect (at -0.75 -2.825 ${p.r}) (size 0.3 3.0) (layers "B.Cu" "B.Paste" "B.Mask") ${dp})
 
       ${''/* ── Shield / mounting holes (GND) ────────────────────── */}
       ${''/* Oval thru-hole pads: both size and drill are oval,      */}
